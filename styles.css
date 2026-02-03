@@ -1,0 +1,71 @@
+/* Basic reset and variables */
+:root{
+  --bg:#121214;
+  --tile-bg:#121214;
+  --tile-border:#3a3a3c;
+  --text:#d7d7d9;
+  --accent:#538d4e; /* green */
+  --yellow:#b59f3b;
+  --gray:#818384;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial,sans-serif;background:var(--bg);color:var(--text)}
+.header{display:flex;justify-content:space-between;align-items:center;padding:1rem}
+.title{margin:0;font-size:1.25rem}
+.main{display:flex;flex-direction:column;align-items:center;padding:1rem;gap:1rem}
+.grid{display:grid;grid-template-rows:repeat(6,1fr);gap:0.5rem;max-width:420px;width:90%}
+.row{display:grid;grid-template-columns:repeat(5,1fr);gap:0.5rem}
+.tile{width:100%;padding-top:100%;position:relative;border:2px solid var(--tile-border);background:transparent;color:var(--text);font-weight:700;display:flex;align-items:center;justify-content:center;text-transform:uppercase;letter-spacing:0.1rem}
+.tile > .letter{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+.tile.flip .letter{transform:rotateX(180deg)}
+.tile.green{background:var(--accent);border-color:var(--accent);}
+.tile.yellow{background:var(--yellow);border-color:var(--yellow);}
+.tile.gray{background:var(--gray);border-color:var(--gray);}
+.tile.shake{animation:shake 600ms}
+@keyframes shake{0%{transform:translateX(0)}20%{transform:translateX(-10px)}40%{transform:translateX(10px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}100%{transform:translateX(0)}}
+
+.keyboard{display:flex;flex-direction:column;gap:0.5rem;max-width:720px;width:100%;align-items:center}
+.k-row{display:flex;gap:0.45rem}
+.key{padding:0.8rem 0.6rem;border-radius:6px;background:#3a3a3c;color:var(--text);border:none;font-weight:600;cursor:pointer;user-select:none}
+.key.green{background:var(--accent)}
+.key.yellow{background:var(--yellow)}
+.key.gray{background:var(--gray)}
+.key.wide{padding:0.8rem 1.2rem}
+
+.message{min-height:24px;color:#ffcc00}
+
+.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6)}
+.modal.hidden{display:none}
+.modal-content{background:#fff;color:#000;padding:1rem;border-radius:8px;max-width:600px;width:90%}
+.modal-close{position:absolute;right:1rem;top:1rem;border:none;background:transparent;font-size:1.25rem}
+
+@media(min-width:768px){
+  .tile > .letter{font-size:2rem}
+}
+
+/* Accessibility: focus indicators */
+.key:focus,.tile:focus{outline:3px solid #9ca3ff;outline-offset:2px}
+
+/* Flip animation */
+.flip .letter{animation:flip 500ms forwards}
+@keyframes flip{0%{transform:rotateX(0)}50%{transform:rotateX(90deg)}100%{transform:rotateX(0)}}
+
+/* Win bounce */
+@keyframes bounce{0%{transform:translateY(0)}30%{transform:translateY(-12px)}60%{transform:translateY(0)}100%{transform:translateY(0)}}
+.tile.win{animation:bounce 600ms}
+
+/* Utility */
+.hidden{display:none !important}
+
+/* Power-up and selection visuals */
+.tile.selected{outline:3px solid rgba(255,215,0,0.9);outline-offset:2px}
+.key.eliminated{opacity:0.45;filter:grayscale(60%);text-decoration:line-through}
+.powerup.disabled{opacity:0.5;pointer-events:none}
+
+/* Hint visual */
+.tile.hint{box-shadow:0 0 0 3px rgba(83,141,78,0.18) inset}
+
+/* Small responsive tweaks */
+@media(max-width:420px){
+  .key{padding:0.6rem 0.4rem}
+}

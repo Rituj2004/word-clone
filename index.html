@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wordle Clone - PowerUps Mode (MVP)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <h1 class="title">Wordle Clone</h1>
+    <div class="header-controls">
+      <button id="help-btn" aria-label="Help">❔</button>
+      <button id="settings-btn" aria-label="Settings">⚙️</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="game-area">
+      <div id="game-grid" class="grid" aria-label="Guess grid" role="grid"></div>
+      <div class="controls">
+        <div id="powerups" class="powerups">
+          <button id="hint-btn" class="powerup" disabled>Hint</button>
+          <button id="swap-btn" class="powerup" disabled>Swap</button>
+          <button id="skip-btn" class="powerup" disabled>Skip</button>
+          <div id="powerup-count">Power-ups left: <span id="powerup-left">2</span></div>
+        </div>
+      </div>
+
+      <div id="message" class="message" aria-live="polite"></div>
+    </section>
+
+    <section class="keyboard-section">
+      <div id="keyboard" class="keyboard" aria-label="On-screen keyboard"></div>
+    </section>
+  </main>
+
+  <!-- Modals (help, settings, stats) -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content">
+      <button id="modal-close" class="modal-close" aria-label="Close">×</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <small>Daily puzzle • Built with ❤️</small>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
